@@ -34,6 +34,14 @@ services:
   node-app:
     build:
       context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./app:/usr/src/app
+      - ./usr/src/app/node_modules
+    command: npm run start:debug
+    depends_on:
+      - mysql
     ports:
       - "8096:8080"
     networks:
