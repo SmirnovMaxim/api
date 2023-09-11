@@ -3,6 +3,7 @@ WORKDIR /usr/src/app
 
 COPY ./app/package*.json ./
 
+RUN npm i -g @nestjs/cli
 RUN npm install
 
 COPY ./app .
