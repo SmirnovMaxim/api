@@ -16,7 +16,7 @@ $ docker-compose up -d
   * Login: root
   * Password: password
 * API - http://localhost:8096
-* Swagger - http://localhost:8096/api.docs
+* Swagger - http://localhost:8096/api/docs
 
 ## Test
 
