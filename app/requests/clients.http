@@ -1,0 +1,20 @@
+POST http://localhost:8096/client
+Content-Type: application/json
+
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "surName": "Иванович",
+  "email": "ivanov@mail.ru",
+  "vkId": "id123"
+}
+
+###
+
+GET http://localhost:8096/client/2
+
+###
+
+DELETE http://localhost:8096/client/2
+
+###
