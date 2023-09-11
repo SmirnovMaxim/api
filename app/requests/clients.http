@@ -27,5 +27,6 @@ PATCH http://localhost:8096/client/1
 Content-Type: application/json
 
 {
-  "firstName": "Макс"
+  "firstName": "Макс",
+  "email": "ivanov@mail.ru"
 }
