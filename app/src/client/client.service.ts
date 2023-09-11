@@ -3,6 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Client} from './client';
 import {CreateClientDto} from './dto/createClientDto';
+import {UpdateClientDto} from './dto/updateClientDto';
 
 @Injectable()
 export class ClientService {
@@ -21,6 +22,15 @@ export class ClientService {
       throw new NotFoundException();
     }
     return client;
+  }
+
+  async update(id: number, dto: UpdateClientDto) {
+    const isExist = await this.clientRepository.exist({ where: { id } });
+    if (!isExist) {
+      throw new NotFoundException();
+    }
+    await this.clientRepository.update({ id }, dto);
+    return this.getOne(id);
   }
 
   getAllClients() {

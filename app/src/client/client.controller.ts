@@ -6,12 +6,14 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  Patch,
   Post,
 } from '@nestjs/common';
 import {ApiBody, ApiNotFoundResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse} from '@nestjs/swagger';
 import {Client} from './client';
 import {ClientService} from './client.service';
 import {CreateClientDto} from './dto/createClientDto';
+import {UpdateClientDto} from './dto/updateClientDto';
 
 @Controller('client')
 export class ClientController {
@@ -26,6 +28,16 @@ export class ClientController {
     return this.clientService.createClient(clientDto);
   }
 
+  @ApiOperation({ summary: 'Update client by id' })
+  @ApiParam({ name: 'id', type: Number })
+  @ApiBody({ type: UpdateClientDto })
+  @ApiResponse({ status: 200, type: Client })
+  @ApiNotFoundResponse({ type: NotFoundException })
+  @HttpCode(200)
+  @Patch(':id')
+  update(@Body() dto: UpdateClientDto, @Param('id') id: number) {
+    return this.clientService.update(id, dto);
+  }
   @ApiOperation({ summary: 'Get client by id' })
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Client })
