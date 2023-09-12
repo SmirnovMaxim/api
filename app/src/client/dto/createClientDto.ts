@@ -1,6 +1,6 @@
-import {ApiProperty} from '@nestjs/swagger';
-import {IsEmail, IsNotEmpty, IsString} from 'class-validator';
-import {IsUnique} from '../../validators';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsUnique } from '@/validators';
 
 export class CreateClientDto {
   @ApiProperty({ example: 'Иван', description: 'Имя' })

@@ -9,11 +9,19 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import {ApiBody, ApiNotFoundResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags} from '@nestjs/swagger';
-import {Client} from './client';
-import {ClientService} from './client.service';
-import {CreateClientDto} from './dto/createClientDto';
-import {UpdateClientDto} from './dto/updateClientDto';
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Client } from '@/client/client';
+import { ClientService } from '@/client/client.service';
+import { CreateClientDto } from '@/client/dto/createClientDto';
+import { UpdateClientDto } from '@/client/dto/updateClientDto';
 
 @ApiTags('Client')
 @Controller('client')
@@ -39,6 +47,7 @@ export class ClientController {
   update(@Body() dto: UpdateClientDto, @Param('id') id: number) {
     return this.clientService.update(id, dto);
   }
+
   @ApiOperation({ summary: 'Get client by id' })
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Client })
