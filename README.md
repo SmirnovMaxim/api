@@ -1,7 +1,7 @@
 ## Preparing
 
 1. Download and install [Docker](https://www.docker.com/)
-2. Copy .env.example to .env
+2. Go to app directory, copy .env.example to .env
 
 ## Running the app
 
