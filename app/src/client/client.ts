@@ -1,6 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { ClientStatus } from '@/enums';
+import {ApiProperty} from '@nestjs/swagger';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {ClientStatus} from '../enums';
 
 @Entity()
 export class Client {
@@ -28,12 +28,7 @@ export class Client {
   @Column({ unique: true })
   vkId: string;
 
-  @ApiProperty({
-    example: 'new',
-    required: false,
-    default: ClientStatus.NEW,
-    enum: ClientStatus,
-  })
+  @ApiProperty({ example: 'new', required: false, default: ClientStatus.NEW, enum: ClientStatus })
   @Column({ type: 'enum', enum: ClientStatus, default: ClientStatus.NEW })
   status: string;
 }

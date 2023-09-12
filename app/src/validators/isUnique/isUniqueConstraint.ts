@@ -3,17 +3,17 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
+import { IsUniqueConstraintInput } from './isUnique';
 import { EntityManager } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { IsUniqueConstraintInput } from '@/validators/isUnique/isUnique';
 
 @ValidatorConstraint({ name: 'IsUniqueConstraint', async: true })
 @Injectable()
 export class IsUniqueConstraint implements ValidatorConstraintInterface {
   constructor(private readonly entityManager: EntityManager) {}
 
-  async validate(value: any, arguments_?: ValidationArguments): Promise<boolean> {
-    const { tableName, column }: IsUniqueConstraintInput = arguments_.constraints[0];
+  async validate(value: any, args?: ValidationArguments): Promise<boolean> {
+    const { tableName, column }: IsUniqueConstraintInput = args.constraints[0];
 
     const exists = await this.entityManager
       .getRepository(tableName)

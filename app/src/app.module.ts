@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import * as process from 'node:process';
+import * as process from 'process';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { ClientModule } from '@/client/client.module';
-import { IsUniqueConstraint } from '@/validators/isUnique/isUniqueConstraint';
+import { ClientModule } from './client/client.module';
+import {IsUniqueConstraint} from './validators/isUnique/isUniqueConstraint';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { IsUniqueConstraint } from '@/validators/isUnique/isUniqueConstraint';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    ClientModule,
+    ClientModule
   ],
   controllers: [],
   providers: [IsUniqueConstraint],

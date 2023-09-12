@@ -1,5 +1,5 @@
-import { IsUnique } from '@/validators/isUnique/isUnique';
+import {IsUnique} from './isUnique/isUnique';
 
 export {
-  IsUnique,
+  IsUnique
 }

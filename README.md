@@ -6,7 +6,7 @@
 ## Running the app
 
 ```bash
-$ docker-compose build
+$ docker build . -t rest-node
 $ docker-compose up -d
 ```
 
