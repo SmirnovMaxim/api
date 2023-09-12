@@ -1,4 +1,4 @@
-import { ClientStatus } from '@/enums/clientStatus';
+import {ClientStatus} from './clientStatus';
 
 export {
   ClientStatus,
