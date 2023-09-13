@@ -10,6 +10,6 @@ down:
 build:
 	docker-compose build
 
-rebuild: down build start
+rebuild: build start
 
 restart: down start

@@ -1,5 +1,0 @@
-meta:
-  environment: db
-  toolchain:
-    name: mysql
-    version: 8.1
