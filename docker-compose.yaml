@@ -4,12 +4,6 @@ volumes:
   mysql:
 
 services:
-#  nginx:
-#    image: nginx
-#    ports:
-#      - '8094:80'
-#    networks:
-#      - rest-network
   mysql:
     image: mysql
     volumes:
@@ -43,11 +37,14 @@ services:
       - ./usr/src/app/node_modules
     command: npm run start:debug
     environment:
-      MYSQL_HOST: 'mysql'
+      - MYSQL_HOST
+      - DB_USER
+      - DB_PASSWORD
+      - DB_NAME
     depends_on:
       - mysql
     ports:
-      - "8096:8080"
+      - "80:8080"
     networks:
       - rest-network
 
