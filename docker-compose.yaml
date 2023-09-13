@@ -10,7 +10,6 @@ services:
       - mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=database
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
     ports:
