@@ -1,14 +1,16 @@
 FROM node:latest AS development
 WORKDIR /usr/src/app
 
-COPY ./app/package*.json ./
+COPY ./package*.json ./
 
 RUN npm i -g @nestjs/cli
 RUN npm install
 
-COPY ./app .
+COPY . .
 
 RUN npm run build
+
+COPY . .
 
 FROM node:latest AS production
 
@@ -21,5 +23,4 @@ COPY --from=development /usr/src/app .
 
 EXPOSE 8080
 
-CMD ["node", "dist/main"]
-
+CMD ["node", "build/src/main"]
