@@ -11,6 +11,7 @@ services:
 #    networks:
 #      - rest-network
   mysql:
+    container_name: mysql
     image: mysql
     volumes:
       - mysql:/var/lib/mysql
@@ -26,6 +27,7 @@ services:
       - rest-network
     restart: always
   phpmyadmin:
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
     ports:
       - "8095:80"
@@ -38,9 +40,9 @@ services:
       - rest-network
     restart: always
   node-app:
+    container_name: app
     build:
       context: .
-#      dockerfile: Dockerfile
       target: development
     env_file: .env
     volumes:
