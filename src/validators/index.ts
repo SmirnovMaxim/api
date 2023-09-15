@@ -1,5 +1,3 @@
-import {IsUnique} from './isUnique/isUnique';
+import { IsUnique } from './isUnique/isUnique';
 
-export {
-  IsUnique
-}
+export { IsUnique };

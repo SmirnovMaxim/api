@@ -1,5 +1,3 @@
-import {ClientStatus} from './clientStatus';
+import { ClientStatus } from './clientStatus';
 
-export {
-  ClientStatus,
-}
+export { ClientStatus };

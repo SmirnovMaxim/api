@@ -9,11 +9,19 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import {ApiBody, ApiNotFoundResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags} from '@nestjs/swagger';
-import {Client} from './client';
-import {ClientService} from './client.service';
-import {CreateClientDto} from './dto/createClientDto';
-import {UpdateClientDto} from './dto/updateClientDto';
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Client } from './client';
+import { ClientService } from './client.service';
+import { CreateClientDto } from './dto/createClientDto';
+import { UpdateClientDto } from './dto/updateClientDto';
 
 @ApiTags('Client')
 @Controller('client')

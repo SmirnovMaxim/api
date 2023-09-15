@@ -6,7 +6,10 @@ export type IsUniqueConstraintInput = {
   column: string;
 };
 
-export function IsUnique(options: IsUniqueConstraintInput, validationOptions?: ValidationOptions) {
+export function IsUnique(
+  options: IsUniqueConstraintInput,
+  validationOptions?: ValidationOptions,
+) {
   return function (object: any, propertyName: string) {
     registerDecorator({
       name: 'is-unique',

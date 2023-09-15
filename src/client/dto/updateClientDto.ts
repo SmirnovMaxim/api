@@ -1,6 +1,6 @@
-import {ApiProperty} from '@nestjs/swagger';
-import {IsEmail, IsString, ValidateIf} from 'class-validator';
-import {IsUnique} from '../../validators';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsString, ValidateIf } from 'class-validator';
+import { IsUnique } from '../../validators';
 
 export class UpdateClientDto {
   @ApiProperty({ example: 'Иван', description: 'Имя', required: false })
@@ -18,7 +18,11 @@ export class UpdateClientDto {
   @ValidateIf((dto) => Object.prototype.hasOwnProperty.call(dto, 'surName'))
   readonly surName: string;
 
-  @ApiProperty({ example: 'ivanov@mail.ru', description: 'E-mail', required: false })
+  @ApiProperty({
+    example: 'ivanov@mail.ru',
+    description: 'E-mail',
+    required: false,
+  })
   @IsEmail()
   @IsUnique({ column: 'email', tableName: 'client' })
   @ValidateIf((dto) => Object.prototype.hasOwnProperty.call(dto, 'email'))
