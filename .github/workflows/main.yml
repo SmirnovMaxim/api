@@ -15,13 +15,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: ssh-pipeline
-        uses: cross-the-world/ssh-pipeline@v1.2.0
+      - name: ssh deploy
+        # You may pin to the exact commit or the version.
+        # uses: easingthemes/ssh-deploy@3884c8554ff45c0fd37d3f12a76288d06ce7a2ff
+        uses: easingthemes/ssh-deploy@v4.1.8
         with:
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/app
-            git pull
-            make rebuild
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          SCRIPT_BEFORE: cd /home/app && git pull && make rebuild
