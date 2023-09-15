@@ -24,6 +24,7 @@ services:
       - "3306:3306"
     networks:
       - rest-network
+    restart: always
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
@@ -35,6 +36,7 @@ services:
       - mysql
     networks:
       - rest-network
+    restart: always
   node-app:
     build:
       context: .
@@ -43,7 +45,7 @@ services:
     env_file: .env
     volumes:
       - ./:/usr/src/app
-      - ./usr/src/app/node_modules
+      - /usr/src/app/node_modules
     command: npm run start:debug
     environment:
       - MYSQL_HOST
@@ -53,6 +55,7 @@ services:
       - "80:8080"
     networks:
       - rest-network
+    restart: always
 
 networks:
   rest-network:
