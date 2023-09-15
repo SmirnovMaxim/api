@@ -15,9 +15,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Deploy using ssh
-      run: |
-        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }}
-        cd /home/app
-        git pull
-        make rebuild
+      - name: ssh-pipeline
+        uses: cross-the-world/ssh-pipeline@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/app
+            git pull
+            make rebuild
