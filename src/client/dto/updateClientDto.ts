@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, ValidateIf } from 'class-validator';
-import { IsUnique } from '../../validators';
+import { IsUnique } from '@/validators';
 
 export class UpdateClientDto {
   @ApiProperty({ example: 'Иван', description: 'Имя', required: false })

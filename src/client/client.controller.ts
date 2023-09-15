@@ -18,10 +18,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Client } from './client';
-import { ClientService } from './client.service';
-import { CreateClientDto } from './dto/createClientDto';
-import { UpdateClientDto } from './dto/updateClientDto';
+import { Client } from '@/client/client';
+import { ClientService } from '@/client/client.service';
+import { CreateClientDto } from '@/client/dto/createClientDto';
+import { UpdateClientDto } from '@/client/dto/updateClientDto';
 
 @ApiTags('Client')
 @Controller('client')

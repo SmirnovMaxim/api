@@ -1,3 +1,3 @@
-import { ClientStatus } from './clientStatus';
+import { ClientStatus } from '@/enums/clientStatus';
 
 export { ClientStatus };

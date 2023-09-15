@@ -3,7 +3,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { IsUniqueConstraintInput } from './isUnique';
+import { IsUniqueConstraintInput } from '@/validators/isUnique/isUnique';
 import { EntityManager } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 
