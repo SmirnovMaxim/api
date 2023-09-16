@@ -23,4 +23,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_SECRET_KEY }}
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USER }}
-          SCRIPT_BEFORE: cd /home/app && git pull && make rebuild
+          SCRIPT_BEFORE: cd /home/app && make down && git pull && docker-compose build && make start
