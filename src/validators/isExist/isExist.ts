@@ -1,23 +1,24 @@
 import { ValidationOptions, registerDecorator } from 'class-validator';
-import { IsUniqueConstraint } from '@/validators/isUnique/isUniqueConstraint';
+import { IsExistConstraint } from '@/validators/isExist/isExistConstraint';
 
-export type IsUniqueConstraintInput = {
+export type IsExistConstraintInput = {
   tableName: string;
   column: string;
+  isUnique: boolean;
 };
 
-export function IsUnique(
-  options: IsUniqueConstraintInput,
+export function IsExist(
+  options: IsExistConstraintInput,
   validationOptions?: ValidationOptions,
 ) {
   return function (object: any, propertyName: string) {
     registerDecorator({
-      name: 'is-unique',
+      name: 'is-exist',
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [options],
-      validator: IsUniqueConstraint,
+      validator: IsExistConstraint,
     });
   };
 }

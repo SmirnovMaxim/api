@@ -1,5 +1,6 @@
+import { Child } from '@/child/child';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ClientStatus } from '@/enums';
 
 @Entity()
@@ -36,4 +37,7 @@ export class Client {
   })
   @Column({ type: 'enum', enum: ClientStatus, default: ClientStatus.NEW })
   status: string;
+
+  @OneToMany(() => Child, (child) => child.client)
+  children: Child[];
 }

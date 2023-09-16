@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { IsUnique } from '@/validators';
+import { IsExist } from '@/validators';
 
 export class CreateClientDto {
   @ApiProperty({ example: 'Иван', description: 'Имя' })
@@ -20,7 +20,7 @@ export class CreateClientDto {
 
   @ApiProperty({ example: 'ivanov@mail.ru', description: 'E-mail' })
   @IsEmail()
-  @IsUnique({ column: 'email', tableName: 'client' })
+  @IsExist({ column: 'email', tableName: 'client', isUnique: true })
   @IsNotEmpty()
   readonly email: string;
 

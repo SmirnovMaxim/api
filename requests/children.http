@@ -1,0 +1,10 @@
+POST {{ apiHost }}/child
+Content-Type: application/json
+
+{
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "surName": "Иванович",
+  "clientId": 3,
+  "phone": "+79008007060"
+}

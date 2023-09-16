@@ -1,3 +1,3 @@
-import { IsUnique } from '@/validators/isUnique/isUnique';
+import { IsExist } from '@/validators/isExist/isExist';
 
-export { IsUnique };
+export { IsExist };

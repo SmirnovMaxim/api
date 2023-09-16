@@ -1,4 +1,4 @@
-POST http://localhost:8096/client
+POST {{ apiHost }}/client
 Content-Type: application/json
 
 {
@@ -11,19 +11,19 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8096/client/2
+GET {{ apiHost }}/client/2
 
 ###
 
-GET http://localhost:8096/client/1
+GET {{ apiHost }}/client/1
 
 ###
 
-DELETE http://localhost:8096/client/2
+DELETE {{ apiHost }}/client/1
 
 ###
 
-PATCH http://localhost:8096/client/1
+PATCH {{ apiHost }}/client/1
 Content-Type: application/json
 
 {

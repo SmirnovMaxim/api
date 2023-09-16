@@ -3,17 +3,18 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { IsUniqueConstraintInput } from '@/validators/isUnique/isUnique';
+import { IsExistConstraintInput } from '@/validators/isExist/isExist';
 import { EntityManager } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 
 @ValidatorConstraint({ name: 'IsUniqueConstraint', async: true })
 @Injectable()
-export class IsUniqueConstraint implements ValidatorConstraintInterface {
+export class IsExistConstraint implements ValidatorConstraintInterface {
   constructor(private readonly entityManager: EntityManager) {}
 
   async validate(value: any, args?: ValidationArguments): Promise<boolean> {
-    const { tableName, column }: IsUniqueConstraintInput = args.constraints[0];
+    const { tableName, column, isUnique }: IsExistConstraintInput =
+      args.constraints[0];
 
     const exists = await this.entityManager
       .getRepository(tableName)
@@ -21,10 +22,14 @@ export class IsUniqueConstraint implements ValidatorConstraintInterface {
       .where({ [column]: value })
       .getExists();
 
-    return !exists;
+    return isUnique ? !exists : exists;
   }
 
   defaultMessage?(validationArguments?: ValidationArguments): string {
-    return `This ${validationArguments.property} already exist`;
+    const { isUnique } = validationArguments.constraints[0];
+
+    return `This ${validationArguments.property} ${
+      isUnique ? 'already' : "doesn't"
+    } exist`;
   }
 }

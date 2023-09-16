@@ -3,7 +3,9 @@ import * as process from 'process';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ClientModule } from '@/client/client.module';
-import { IsUniqueConstraint } from '@/validators/isUnique/isUniqueConstraint';
+import { ChildModule } from '@/child/child.module';
+import { IsExistConstraint } from '@/validators/isExist/isExistConstraint';
+import { TeacherModule } from '@/teacher/teacher.module';
 
 @Module({
   imports: [
@@ -19,8 +21,9 @@ import { IsUniqueConstraint } from '@/validators/isUnique/isUniqueConstraint';
       autoLoadEntities: true,
     }),
     ClientModule,
+    ChildModule,
+    TeacherModule,
   ],
-  controllers: [],
-  providers: [IsUniqueConstraint],
+  providers: [IsExistConstraint],
 })
 export class AppModule {}
