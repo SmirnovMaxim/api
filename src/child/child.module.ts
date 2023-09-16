@@ -1,3 +1,4 @@
+import { AuthModule } from '@/auth/auth.module';
 import { Child } from '@/child/child';
 import { Client } from '@/client/client';
 import { ClientService } from '@/client/client.service';
@@ -9,6 +10,6 @@ import { ChildService } from '@/child/child.service';
 @Module({
   providers: [ChildService, ClientService],
   controllers: [ChildController],
-  imports: [TypeOrmModule.forFeature([Child, Client])],
+  imports: [TypeOrmModule.forFeature([Child, Client]), AuthModule],
 })
 export class ChildModule {}

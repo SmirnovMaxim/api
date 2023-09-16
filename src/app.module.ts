@@ -6,6 +6,8 @@ import { ClientModule } from '@/client/client.module';
 import { ChildModule } from '@/child/child.module';
 import { IsExistConstraint } from '@/validators/isExist/isExistConstraint';
 import { TeacherModule } from '@/teacher/teacher.module';
+import { AuthModule } from '@/auth/auth.module';
+import { UserModule } from '@/user/user.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { TeacherModule } from '@/teacher/teacher.module';
     ClientModule,
     ChildModule,
     TeacherModule,
+    AuthModule,
+    UserModule,
   ],
   providers: [IsExistConstraint],
 })

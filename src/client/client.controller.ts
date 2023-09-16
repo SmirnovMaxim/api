@@ -1,3 +1,4 @@
+import { AuthGuard } from '@/auth/auth.guard';
 import {
   Body,
   Controller,
@@ -8,8 +9,10 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -17,13 +20,18 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { Client } from '@/client/client';
 import { ClientService } from '@/client/client.service';
 import { CreateClientDto } from '@/client/dto/createClientDto';
 import { UpdateClientDto } from '@/client/dto/updateClientDto';
+import { Request } from 'express';
 
 @ApiTags('Client')
+@ApiBearerAuth()
+@ApiUnauthorizedResponse()
+@UseGuards(AuthGuard)
 @Controller('client')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
@@ -47,6 +55,7 @@ export class ClientController {
   update(@Body() dto: UpdateClientDto, @Param('id') id: number) {
     return this.clientService.update(id, dto);
   }
+
   @ApiOperation({ summary: 'Get client by id' })
   @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Client })

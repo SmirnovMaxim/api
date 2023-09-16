@@ -1,3 +1,4 @@
+import { AuthGuard } from '@/auth/auth.guard';
 import { Child } from '@/child/child';
 import { ChildService } from '@/child/child.service';
 import { CreateChildDto } from '@/child/dto/createChildDto';
@@ -12,9 +13,11 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -22,9 +25,13 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
 @ApiTags('Child')
+@ApiBearerAuth()
+@ApiUnauthorizedResponse()
+@UseGuards(AuthGuard)
 @Controller('child')
 export class ChildController {
   constructor(private readonly childrenService: ChildService) {}

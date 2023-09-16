@@ -1,3 +1,4 @@
+import { AuthGuard } from '@/auth/auth.guard';
 import { Teacher } from '@/teacher/entities/teacher.entity';
 import {
   Controller,
@@ -9,8 +10,10 @@ import {
   Delete,
   HttpCode,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -18,12 +21,16 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { TeacherService } from '@/teacher/teacher.service';
 import { CreateTeacherDto } from '@/teacher/dto/create-teacher.dto';
 import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 
 @ApiTags('Teacher')
+@ApiBearerAuth()
+@ApiUnauthorizedResponse()
+@UseGuards(AuthGuard)
 @Controller('teacher')
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}
