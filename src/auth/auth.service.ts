@@ -1,4 +1,5 @@
 import { LoginDto } from '@/auth/dto/login.dto';
+import { SignupDto } from '@/auth/dto/signup.dto';
 import { CreateUserDto } from '@/user/dto/create-user.dto';
 import { User } from '@/user/entities/user.entity';
 import { UserService } from '@/user/user.service';
@@ -24,10 +25,11 @@ export class AuthService {
 
   async signup(dto: CreateUserDto) {
     const password = await bcrypt.hash(dto.password, 5);
-    return this.userService.create({
+    const user = await this.userService.create({
       ...dto,
       password,
     });
+    return new SignupDto(user.id, user.login);
   }
 
   private async validateUser(dto: CreateUserDto) {

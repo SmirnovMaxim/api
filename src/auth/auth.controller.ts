@@ -1,5 +1,6 @@
 import { AuthService } from '@/auth/auth.service';
 import { LoginDto } from '@/auth/dto/login.dto';
+import { SignupDto } from '@/auth/dto/signup.dto';
 import { Public } from '@/decorators/public.decorator';
 import { CreateUserDto } from '@/user/dto/create-user.dto';
 import {
@@ -38,6 +39,7 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Signup user' })
   @ApiBody({ type: CreateUserDto })
+  @ApiResponse({ type: SignupDto, status: 201 })
   @HttpCode(201)
   @Post('signup')
   signup(@Body() dto: CreateUserDto) {
