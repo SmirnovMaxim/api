@@ -20,8 +20,6 @@ import {
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
-  ApiParam,
-  ApiQuery,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -45,7 +43,6 @@ export class ChildController {
   }
 
   @ApiOperation({ summary: 'Update child by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiBody({ type: UpdateChildDto })
   @ApiResponse({ status: 200, type: Child })
   @ApiNotFoundResponse({ type: NotFoundException })
@@ -55,7 +52,6 @@ export class ChildController {
     return this.childrenService.update(id, dto);
   }
   @ApiOperation({ summary: 'Get child by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Child })
   @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
@@ -73,7 +69,6 @@ export class ChildController {
   }
 
   @ApiOperation({ summary: 'Remove child' })
-  @ApiQuery({ name: 'id', type: Number })
   @ApiResponse({ status: 204 })
   @HttpCode(204)
   @Delete(':id')

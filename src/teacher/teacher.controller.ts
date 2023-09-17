@@ -16,8 +16,6 @@ import {
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
-  ApiParam,
-  ApiQuery,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -51,7 +49,6 @@ export class TeacherController {
   }
 
   @ApiOperation({ summary: 'Get teacher by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Teacher })
   @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
@@ -61,7 +58,6 @@ export class TeacherController {
   }
 
   @ApiOperation({ summary: 'Update teacher by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiBody({ type: UpdateTeacherDto })
   @ApiResponse({ status: 200, type: Teacher })
   @ApiNotFoundResponse({ type: NotFoundException })
@@ -72,7 +68,6 @@ export class TeacherController {
   }
 
   @ApiOperation({ summary: 'Remove teacher' })
-  @ApiQuery({ name: 'id', type: Number })
   @ApiResponse({ status: 204 })
   @HttpCode(204)
   @Delete(':id')

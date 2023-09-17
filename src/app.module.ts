@@ -8,6 +8,7 @@ import { IsExistConstraint } from '@/validators/isExist/isExistConstraint';
 import { TeacherModule } from '@/teacher/teacher.module';
 import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from '@/user/user.module';
+import { LessonModule } from '@/lesson/lesson.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { UserModule } from '@/user/user.module';
     TeacherModule,
     AuthModule,
     UserModule,
+    LessonModule,
   ],
   providers: [IsExistConstraint],
 })

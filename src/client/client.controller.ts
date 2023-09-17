@@ -15,8 +15,6 @@ import {
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
-  ApiParam,
-  ApiQuery,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -43,7 +41,6 @@ export class ClientController {
   }
 
   @ApiOperation({ summary: 'Update client by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiBody({ type: UpdateClientDto })
   @ApiResponse({ status: 200, type: Client })
   @ApiNotFoundResponse({ type: NotFoundException })
@@ -54,7 +51,6 @@ export class ClientController {
   }
 
   @ApiOperation({ summary: 'Get client by id' })
-  @ApiParam({ name: 'id', type: Number })
   @ApiResponse({ status: 200, type: Client })
   @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
@@ -72,7 +68,6 @@ export class ClientController {
   }
 
   @ApiOperation({ summary: 'Remove client' })
-  @ApiQuery({ name: 'id', type: Number })
   @ApiResponse({ status: 204 })
   @HttpCode(204)
   @Delete(':id')
