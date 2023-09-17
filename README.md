@@ -1,3 +1,5 @@
+[![Deploy](https://github.com/SmirnovMaxim/api/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/SmirnovMaxim/api/actions/workflows/main.yml)
+
 ## Preparing
 
 1. Download and install [Docker](https://www.docker.com/)
@@ -6,7 +8,7 @@
 ## Running the app
 
 ```bash
-$ docker build . -t rest-node
+$ docker-compose build
 $ docker-compose up -d
 ```
 
@@ -15,18 +17,5 @@ $ docker-compose up -d
 * PhpMyAdmin – http://localhost:8095
   * Login: root
   * Password: password
-* API - http://localhost:8096
-* Swagger - http://localhost:8096/api/docs
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+* API - http://localhost
+* Swagger - http://localhost/api/docs
