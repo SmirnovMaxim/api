@@ -13,6 +13,7 @@ import {
   Param,
   Patch,
   Post,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -30,7 +31,7 @@ import {
 
 @ApiTags('Child')
 @ApiBearerAuth()
-@ApiUnauthorizedResponse()
+@ApiUnauthorizedResponse({ type: UnauthorizedException })
 @UseGuards(AuthGuard)
 @Controller('child')
 export class ChildController {

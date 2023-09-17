@@ -1,7 +1,22 @@
 import { AuthService } from '@/auth/auth.service';
+import { LoginDto } from '@/auth/dto/login.dto';
 import { CreateUserDto } from '@/user/dto/create-user.dto';
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  NotFoundException,
+  Post,
+  UnauthorizedException,
+} from '@nestjs/common';
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -10,7 +25,10 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Login user' })
   @ApiBody({ type: CreateUserDto })
-  @HttpCode(201)
+  @ApiResponse({ type: LoginDto, status: 200 })
+  @ApiNotFoundResponse({ type: NotFoundException })
+  @ApiUnauthorizedResponse({ type: UnauthorizedException })
+  @HttpCode(200)
   @Post('login')
   login(@Body() dto: CreateUserDto) {
     return this.authService.login(dto);

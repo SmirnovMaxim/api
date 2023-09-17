@@ -11,6 +11,7 @@ import {
   HttpCode,
   NotFoundException,
   UseGuards,
+  UnauthorizedException,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -29,7 +30,7 @@ import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 
 @ApiTags('Teacher')
 @ApiBearerAuth()
-@ApiUnauthorizedResponse()
+@ApiUnauthorizedResponse({ type: UnauthorizedException })
 @UseGuards(AuthGuard)
 @Controller('teacher')
 export class TeacherController {

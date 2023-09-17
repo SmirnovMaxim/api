@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   Post,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -26,11 +27,10 @@ import { Client } from '@/client/client';
 import { ClientService } from '@/client/client.service';
 import { CreateClientDto } from '@/client/dto/createClientDto';
 import { UpdateClientDto } from '@/client/dto/updateClientDto';
-import { Request } from 'express';
 
 @ApiTags('Client')
 @ApiBearerAuth()
-@ApiUnauthorizedResponse()
+@ApiUnauthorizedResponse({ type: UnauthorizedException })
 @UseGuards(AuthGuard)
 @Controller('client')
 export class ClientController {

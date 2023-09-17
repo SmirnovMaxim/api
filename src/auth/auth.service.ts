@@ -1,3 +1,4 @@
+import { LoginDto } from '@/auth/dto/login.dto';
 import { CreateUserDto } from '@/user/dto/create-user.dto';
 import { User } from '@/user/entities/user.entity';
 import { UserService } from '@/user/user.service';
@@ -49,9 +50,6 @@ export class AuthService {
     const accessToken = this.jwtService.sign(payload);
     const verify = this.jwtService.verify(accessToken);
 
-    return {
-      accessToken,
-      expires: verify.exp,
-    };
+    return new LoginDto(accessToken, verify.exp);
   }
 }
