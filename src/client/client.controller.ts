@@ -1,4 +1,3 @@
-import { AuthGuard } from '@/auth/auth.guard';
 import {
   Body,
   Controller,
@@ -10,7 +9,6 @@ import {
   Patch,
   Post,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -31,7 +29,6 @@ import { UpdateClientDto } from '@/client/dto/updateClientDto';
 @ApiTags('Client')
 @ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
-@UseGuards(AuthGuard)
 @Controller('client')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}

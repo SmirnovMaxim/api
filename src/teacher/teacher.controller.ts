@@ -1,4 +1,3 @@
-import { AuthGuard } from '@/auth/auth.guard';
 import { Teacher } from '@/teacher/entities/teacher.entity';
 import {
   Controller,
@@ -10,7 +9,6 @@ import {
   Delete,
   HttpCode,
   NotFoundException,
-  UseGuards,
   UnauthorizedException,
 } from '@nestjs/common';
 import {
@@ -31,7 +29,6 @@ import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 @ApiTags('Teacher')
 @ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
-@UseGuards(AuthGuard)
 @Controller('teacher')
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}

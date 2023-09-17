@@ -1,4 +1,3 @@
-import { AuthGuard } from '@/auth/auth.guard';
 import { Child } from '@/child/child';
 import { ChildService } from '@/child/child.service';
 import { CreateChildDto } from '@/child/dto/createChildDto';
@@ -14,7 +13,6 @@ import {
   Patch,
   Post,
   UnauthorizedException,
-  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -32,7 +30,6 @@ import {
 @ApiTags('Child')
 @ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
-@UseGuards(AuthGuard)
 @Controller('child')
 export class ChildController {
   constructor(private readonly childrenService: ChildService) {}
