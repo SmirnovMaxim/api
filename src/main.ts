@@ -7,7 +7,9 @@ import * as fs from 'fs';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule, {
-    cors: false,
+    cors: {
+      origin: true,
+    },
   });
   const config = new DocumentBuilder().addBearerAuth().build();
   const document = SwaggerModule.createDocument(app, config, {
