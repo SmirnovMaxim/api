@@ -12,7 +12,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import {
-  // ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -26,7 +25,6 @@ import { CreateClientDto } from '@/client/dto/createClientDto';
 import { UpdateClientDto } from '@/client/dto/updateClientDto';
 
 @ApiTags('Client')
-// @ApiBearerAuth()
 @Public()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
 @Controller('client')

@@ -15,7 +15,6 @@ import { LessonService } from '@/lesson/lesson.service';
 import { CreateLessonDto } from '@/lesson/dto/create-lesson.dto';
 import { UpdateLessonDto } from '@/lesson/dto/update-lesson.dto';
 import {
-  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -25,7 +24,6 @@ import {
 } from '@nestjs/swagger';
 
 @ApiTags('Lesson')
-@ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
 @Controller('lesson')
 export class LessonController {

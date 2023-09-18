@@ -16,7 +16,6 @@ import {
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -26,7 +25,6 @@ import {
 } from '@nestjs/swagger';
 
 @ApiTags('Child')
-@ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
 @Controller('child')
 export class ChildController {
