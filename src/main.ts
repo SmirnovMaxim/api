@@ -6,7 +6,11 @@ import { AppModule } from '@/app.module';
 import * as fs from 'fs';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: ['*'],
+    },
+  });
   const config = new DocumentBuilder().addBearerAuth().build();
   const document = SwaggerModule.createDocument(app, config, {
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
