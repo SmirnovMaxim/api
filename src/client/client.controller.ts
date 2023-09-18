@@ -1,3 +1,4 @@
+import { Public } from '@/decorators/public.decorator';
 import {
   Body,
   Controller,
@@ -11,7 +12,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import {
-  ApiBearerAuth,
+  // ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -25,7 +26,8 @@ import { CreateClientDto } from '@/client/dto/createClientDto';
 import { UpdateClientDto } from '@/client/dto/updateClientDto';
 
 @ApiTags('Client')
-@ApiBearerAuth()
+// @ApiBearerAuth()
+@Public()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
 @Controller('client')
 export class ClientController {
