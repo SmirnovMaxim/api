@@ -10,21 +10,30 @@ import {
 
 @Entity()
 export class Lesson {
-  @ApiProperty({ example: 1 })
+  @ApiProperty({ example: 1, required: false })
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ example: 'Математика' })
-  @Column({ nullable: false, unique: true })
+  @ApiProperty({ example: 'Математика', required: false })
+  @Column({ unique: true })
   name: string;
 
-  @ApiProperty({ type: [Teacher] })
-  @ManyToMany(() => Teacher, {
-    nullable: false,
+  @ApiProperty({ type: () => [Teacher], required: false })
+  @ManyToMany(() => Teacher, (teacher) => teacher.lessons, {
+    nullable: true,
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT',
-    eager: true,
   })
-  @JoinTable()
-  teachers: Teacher[];
+  @JoinTable({
+    name: 'teachers_lessons',
+    joinColumn: {
+      name: 'lessonId',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'teacherId',
+      referencedColumnName: 'id',
+    },
+  })
+  teachers?: Teacher[];
 }

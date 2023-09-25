@@ -10,23 +10,23 @@ export class Client {
   id: number;
 
   @ApiProperty({ example: 'Иван' })
-  @Column({ nullable: false })
+  @Column()
   firstName: string;
 
   @ApiProperty({ example: 'Иванов' })
-  @Column({ nullable: false })
+  @Column()
   lastName: string;
 
   @ApiProperty({ example: 'Иванович' })
-  @Column({ nullable: false })
+  @Column()
   surName: string;
 
   @ApiProperty({ example: 'ivanov@mail.ru' })
-  @Column({ nullable: false, unique: true })
+  @Column({ unique: true })
   email: string;
 
   @ApiProperty({ example: 'id123', required: false })
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   vkId: string;
 
   @ApiProperty({

@@ -1,30 +1,53 @@
+import { Lesson } from '@/lesson/entities/lesson.entity';
 import { Teacher } from '@/teacher/entities/teacher.entity';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateTeacherDto } from '@/teacher/dto/create-teacher.dto';
 import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class TeacherService {
   constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
+    @InjectRepository(Lesson)
+    private readonly lessonRepository: Repository<Lesson>,
   ) {}
-  create(createTeacherDto: CreateTeacherDto) {
-    return this.teacherRepository.save(createTeacherDto);
+  async create(createTeacherDto: CreateTeacherDto) {
+    const lessons = await this.lessonRepository.find({
+      where: {
+        id: In(createTeacherDto.lessonIds),
+      },
+      relations: {
+        teachers: false,
+      },
+    });
+
+    const data = {
+      ...createTeacherDto,
+      lessons,
+    };
+
+    const teacher = await this.teacherRepository.save(data);
+    return this.findOne(teacher.id);
   }
 
   findAll() {
-    return this.teacherRepository.find();
+    return this.teacherRepository.find({
+      relations: {
+        lessons: true,
+      },
+    });
   }
 
-  async findOne(id: number) {
-    const teacher = await this.teacherRepository.findOneBy({ id });
-    if (!teacher) {
-      throw new NotFoundException();
-    }
-    return this.teacherRepository.findOneBy({ id });
+  findOne(id: number) {
+    return this.teacherRepository.findOneOrFail({
+      where: { id },
+      relations: {
+        lessons: true,
+      },
+    });
   }
 
   async update(id: number, updateTeacherDto: UpdateTeacherDto) {

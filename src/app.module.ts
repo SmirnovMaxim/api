@@ -21,6 +21,7 @@ import { LessonModule } from '@/lesson/lesson.module';
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
+      logging: true,
       autoLoadEntities: true,
     }),
     ClientModule,

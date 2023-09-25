@@ -25,7 +25,12 @@ export class LessonService {
   }
 
   findOne(id: number) {
-    return this.lessonRepository.findOneBy({ id, teachers: true });
+    return this.lessonRepository.find({
+      where: { id },
+      relations: {
+        teachers: true,
+      },
+    });
   }
 
   update(id: number, updateLessonDto: UpdateLessonDto) {

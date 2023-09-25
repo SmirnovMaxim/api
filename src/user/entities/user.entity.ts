@@ -9,11 +9,11 @@ export class User {
   id: number;
 
   @ApiProperty({ example: 'login' })
-  @Column({ nullable: false })
+  @Column()
   @IsExist({ column: 'login', tableName: 'user', isUnique: true })
   login: string;
 
   @ApiProperty({ example: 'ZSYW6@e*Q' })
-  @Column({ nullable: false })
+  @Column()
   password: string;
 }

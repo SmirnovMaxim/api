@@ -12,7 +12,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import {
-  ApiBearerAuth,
   ApiBody,
   ApiNotFoundResponse,
   ApiOperation,
@@ -25,7 +24,6 @@ import { CreateTeacherDto } from '@/teacher/dto/create-teacher.dto';
 import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 
 @ApiTags('Teacher')
-@ApiBearerAuth()
 @ApiUnauthorizedResponse({ type: UnauthorizedException })
 @Controller('teacher')
 export class TeacherController {
@@ -50,7 +48,6 @@ export class TeacherController {
 
   @ApiOperation({ summary: 'Get teacher by id' })
   @ApiResponse({ status: 200, type: Teacher })
-  @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
   @Get(':id')
   getOne(@Param('id') id: number) {

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsEmpty, IsNotEmpty, IsString } from 'class-validator';
 import { IsExist } from '@/validators';
 
 export class CreateClientDto {
@@ -26,5 +26,6 @@ export class CreateClientDto {
 
   @ApiProperty({ example: 'id123', description: 'ID VK', required: false })
   @IsString()
+  @IsEmpty()
   readonly vkId?: string;
 }
