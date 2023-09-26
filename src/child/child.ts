@@ -1,4 +1,5 @@
 import { Client } from '@/client/client';
+import { IsExist } from '@/validators';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -21,15 +22,19 @@ export class Child {
   surName: string;
 
   @ApiProperty({ example: '89008007060' })
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
+  @IsExist({ column: 'phone', tableName: 'child', isUnique: true })
   phone: string;
+
+  @ApiProperty({ example: 1 })
+  @Column()
+  clientId?: number;
 
   @ApiProperty({ type: () => Client })
   @ManyToOne(() => Client, (client) => client.children, {
     nullable: false,
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
-    eager: true,
   })
   client: Client;
 }

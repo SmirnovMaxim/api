@@ -10,6 +10,7 @@ import {
   HttpCode,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UnauthorizedException,
@@ -46,7 +47,10 @@ export class ChildController {
   @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
   @Patch(':id')
-  update(@Body() dto: UpdateChildDto, @Param('id') id: number) {
+  update(
+    @Body() dto: UpdateChildDto,
+    @Param('id', new ParseIntPipe()) id: number,
+  ) {
     return this.childrenService.update(id, dto);
   }
   @ApiOperation({ summary: 'Get child by id' })

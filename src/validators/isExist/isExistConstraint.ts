@@ -16,13 +16,19 @@ export class IsExistConstraint implements ValidatorConstraintInterface {
     const { tableName, column, isUnique }: IsExistConstraintInput =
       args.constraints[0];
 
-    const exists = await this.entityManager
-      .getRepository(tableName)
-      .createQueryBuilder(tableName)
-      .where({ [column]: value })
-      .getExists();
+    const isExist = (val) =>
+      this.entityManager
+        .getRepository(tableName)
+        .createQueryBuilder(tableName)
+        .where({ [column]: val })
+        .getExists();
 
-    return isUnique ? !exists : exists;
+    if (!Array.isArray(value)) {
+      value = [value];
+    }
+
+    const result = await Promise.all(value.map((item) => isExist(item)));
+    return result.every((exists) => (isUnique ? !exists : exists));
   }
 
   defaultMessage?(validationArguments?: ValidationArguments): string {

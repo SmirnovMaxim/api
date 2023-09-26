@@ -13,27 +13,26 @@ export class ChildService {
   ) {}
 
   async createChild(dto: CreateChildDto) {
-    const child = await this.childRepository.save({
-      ...dto,
-      client: { id: dto.clientId },
-    });
+    const child = await this.childRepository.save(dto);
     return this.getOne(child.id);
   }
 
   async getOne(id: number) {
-    const child = await this.childRepository.findOneBy({ id });
-    if (!child) {
+    try {
+      return await this.childRepository.findOneOrFail({
+        where: { id },
+        relations: { client: true },
+      });
+    } catch (e) {
       throw new NotFoundException();
     }
-    return child;
   }
 
   async update(id: number, dto: UpdateChildDto) {
-    const isExist = await this.childRepository.exist({ where: { id } });
-    if (!isExist) {
-      throw new NotFoundException();
-    }
-    await this.childRepository.update({ id }, dto);
+    await this.childRepository.save({
+      ...dto,
+      id,
+    });
     return this.getOne(id);
   }
 

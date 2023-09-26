@@ -1,3 +1,4 @@
+import { IsExist } from '@/validators';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
@@ -19,5 +20,6 @@ export class CreateTeacherDto {
 
   @ApiProperty({ example: [1, 2, 5], required: false })
   @IsArray()
+  @IsExist({ column: 'id', tableName: 'lesson', isUnique: false })
   readonly lessonIds: number[];
 }

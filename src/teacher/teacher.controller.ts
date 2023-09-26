@@ -10,6 +10,7 @@ import {
   HttpCode,
   NotFoundException,
   UnauthorizedException,
+  ParseIntPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -60,7 +61,10 @@ export class TeacherController {
   @ApiNotFoundResponse({ type: NotFoundException })
   @HttpCode(200)
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateTeacherDto: UpdateTeacherDto) {
+  update(
+    @Param('id', new ParseIntPipe()) id: number,
+    @Body() updateTeacherDto: UpdateTeacherDto,
+  ) {
     return this.teacherService.update(id, updateTeacherDto);
   }
 

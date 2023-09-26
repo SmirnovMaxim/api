@@ -26,6 +26,5 @@ export class CreateClientDto {
 
   @ApiProperty({ example: 'id123', description: 'ID VK', required: false })
   @IsString()
-  @IsEmpty()
   readonly vkId?: string;
 }
