@@ -1,29 +1,20 @@
-import { Lesson } from '@/lesson/entities/lesson.entity';
 import { Teacher } from '@/teacher/entities/teacher.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeacherDto } from '@/teacher/dto/create-teacher.dto';
 import { UpdateTeacherDto } from '@/teacher/dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TeacherService {
   constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
-    @InjectRepository(Lesson)
-    private readonly lessonRepository: Repository<Lesson>,
   ) {}
   async create(createTeacherDto: CreateTeacherDto) {
-    const lessons = await this.lessonRepository.find({
-      where: {
-        id: In(createTeacherDto.lessonIds),
-      },
-    });
-
     const data = {
       ...createTeacherDto,
-      lessons,
+      lessons: (createTeacherDto.lessonIds || []).map((id) => ({ id })),
     };
 
     const teacher = await this.teacherRepository.save(data);
@@ -34,6 +25,7 @@ export class TeacherService {
     return this.teacherRepository.find({
       relations: {
         lessons: true,
+        department: true,
       },
     });
   }
@@ -44,6 +36,7 @@ export class TeacherService {
         where: { id },
         relations: {
           lessons: true,
+          department: true,
         },
       });
     } catch (e) {

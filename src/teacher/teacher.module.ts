@@ -1,5 +1,4 @@
 import { AuthModule } from '@/auth/auth.module';
-import { Lesson } from '@/lesson/entities/lesson.entity';
 import { Teacher } from '@/teacher/entities/teacher.entity';
 import { Module } from '@nestjs/common';
 import { TeacherService } from '@/teacher/teacher.service';
@@ -9,6 +8,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   controllers: [TeacherController],
   providers: [TeacherService],
-  imports: [TypeOrmModule.forFeature([Teacher, Lesson]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Teacher]), AuthModule],
 })
 export class TeacherModule {}

@@ -1,6 +1,13 @@
+import { Department } from '@/department/entities/department.entity';
 import { Lesson } from '@/lesson/entities/lesson.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Teacher {
@@ -19,6 +26,18 @@ export class Teacher {
   @ApiProperty({ example: 'Иванович', required: false })
   @Column()
   surName: string;
+
+  @ApiProperty({ example: 1 })
+  @Column()
+  departmentId: number;
+
+  @ApiProperty({ type: () => Department })
+  @ManyToOne(() => Department, (department) => department.teachers, {
+    nullable: false,
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+  })
+  department: Department;
 
   @ApiProperty({ type: () => [Lesson], required: false })
   @ManyToMany(() => Lesson, (lesson) => lesson.teachers, {

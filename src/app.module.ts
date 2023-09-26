@@ -9,6 +9,7 @@ import { TeacherModule } from '@/teacher/teacher.module';
 import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from '@/user/user.module';
 import { LessonModule } from '@/lesson/lesson.module';
+import { DepartmentModule } from '@/department/department.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { LessonModule } from '@/lesson/lesson.module';
     AuthModule,
     UserModule,
     LessonModule,
+    DepartmentModule,
   ],
   providers: [IsExistConstraint],
 })
