@@ -1,7 +1,7 @@
 import { Days } from '@/enums/days';
 import { IsExist } from '@/validators';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
 
 export class CreateScheduleDto {
   @ApiProperty({ type: Number, example: 1 })
@@ -17,9 +17,9 @@ export class CreateScheduleDto {
   teacherId: number;
 
   @ApiProperty({ type: String, enum: Days })
-  @IsString()
+  @IsEnum(Days)
   @IsNotEmpty()
-  day: string;
+  day: Days;
 
   @ApiProperty({ type: Number, example: 8 })
   @IsNumber()
