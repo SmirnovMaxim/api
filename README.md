@@ -19,3 +19,7 @@ $ docker-compose up -d
   * Password: password
 * API - http://localhost
 * Swagger - http://localhost/api/docs
+
+## Database schema
+
+![](db_schema.png)

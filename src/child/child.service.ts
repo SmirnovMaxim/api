@@ -7,6 +7,10 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class ChildService {
+  #relations: object = {
+    client: true,
+    schedules: true,
+  };
   constructor(
     @InjectRepository(Child)
     private readonly childRepository: Repository<Child>,
@@ -21,7 +25,7 @@ export class ChildService {
     try {
       return await this.childRepository.findOneOrFail({
         where: { id },
-        relations: { client: true },
+        relations: this.#relations,
       });
     } catch (e) {
       throw new NotFoundException();
@@ -36,8 +40,10 @@ export class ChildService {
     return this.getOne(id);
   }
 
-  getAllClients() {
-    return this.childRepository.find();
+  getAllChildren() {
+    return this.childRepository.find({
+      relations: this.#relations,
+    });
   }
 
   delete(id: number) {

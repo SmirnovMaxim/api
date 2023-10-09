@@ -7,6 +7,11 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TeacherService {
+  #relations: object = {
+    lessons: true,
+    department: true,
+    schedules: true,
+  };
   constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
@@ -23,10 +28,7 @@ export class TeacherService {
 
   findAll() {
     return this.teacherRepository.find({
-      relations: {
-        lessons: true,
-        department: true,
-      },
+      relations: this.#relations,
     });
   }
 
@@ -34,10 +36,7 @@ export class TeacherService {
     try {
       return await this.teacherRepository.findOneOrFail({
         where: { id },
-        relations: {
-          lessons: true,
-          department: true,
-        },
+        relations: this.#relations,
       });
     } catch (e) {
       throw new NotFoundException();

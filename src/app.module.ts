@@ -10,6 +10,7 @@ import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from '@/user/user.module';
 import { LessonModule } from '@/lesson/lesson.module';
 import { DepartmentModule } from '@/department/department.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { DepartmentModule } from '@/department/department.module';
     UserModule,
     LessonModule,
     DepartmentModule,
+    ScheduleModule,
   ],
   providers: [IsExistConstraint],
 })

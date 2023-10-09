@@ -67,7 +67,7 @@ export class ChildController {
   @HttpCode(200)
   @Get()
   getAll() {
-    return this.childrenService.getAllClients();
+    return this.childrenService.getAllChildren();
   }
 
   @ApiOperation({ summary: 'Remove child' })

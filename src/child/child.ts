@@ -1,7 +1,14 @@
 import { Client } from '@/client/client';
+import { Schedule } from '@/schedule/entities/schedule.entity';
 import { IsExist } from '@/validators';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Child {
@@ -37,4 +44,8 @@ export class Child {
     onUpdate: 'CASCADE',
   })
   client: Client;
+
+  @ApiProperty({ type: () => [Schedule] })
+  @OneToMany(() => Schedule, (schedule) => schedule.child)
+  schedules: Schedule[];
 }

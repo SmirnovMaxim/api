@@ -30,7 +30,7 @@ export class Client {
   vkId: string;
 
   @ApiProperty({
-    example: 'new',
+    example: ClientStatus.NEW,
     required: false,
     default: ClientStatus.NEW,
     enum: ClientStatus,
